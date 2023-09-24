@@ -18,9 +18,9 @@ twoAdicPrimitiveRoot n p = helper p $ cartProd  [2..(p-1)] [2..n-1]
             | otherwise = helper p xs
         cartProd xs ys = [(x,y) | x <- xs, y <- ys]
 
---Returns true if 2^(2^y) !=1 mod p for all y<j, otherwise return false
+--Returns true if w^(x) !=1 mod p for all x<2^j, otherwise return false
 checkPrimitiveRoot :: (Integral t1, Integral t2) => t2 -> t1 -> t1 -> t2 -> Bool
 checkPrimitiveRoot w j x p
-    | j <= x = True
+    | 2^j < x = True
     | (expSquaring w x p) == 1 = False
     | otherwise = checkPrimitiveRoot w (x+1) j p
